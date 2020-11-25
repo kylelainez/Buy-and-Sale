@@ -17,6 +17,9 @@ const cartSchema = new Schema(
 
 const userSchema = new Schema(
 	{
+		googleId: String,
+		avatar: String,
+		email: String,
 		firstName: String,
 		lastName: String,
 		contactNumber: String,
