@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= title %></title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+	</head>
+	<body>
+		<%- include('../partials/header') %>
+		<form
+			method="POST"
+			action="/new-user-form/<%= id %>?_method=PUT"
+			autocomplete="off"
+		>
+			<h2>New Account Form</h2>
+			<label for="contactNumber">Contact Number:</label>
+			<input type="text" name="contactNumber" />
+			<label for="address">Address:</label>
+			<input type="text" name="address" />
+			<label for="zipCode">Zip Code: </label>
+			<input type="number" name="zipCode" />
+			<button type="submit">Confirm</button>
+		</form>
+	</body>
+</html>

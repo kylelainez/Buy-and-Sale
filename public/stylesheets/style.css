@@ -12,12 +12,12 @@ header {
 	height: 5vh;
 	position: absolute;
 	background-color: #00b7ff;
-	padding: 0;
+	padding: 0 20px;
 	margin: 0;
 	top: 0;
 	left: 0;
 	right: 0;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
 .flex {

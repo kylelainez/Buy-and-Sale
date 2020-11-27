@@ -31,7 +31,8 @@ const userSchema = new Schema(
 				type: Schema.Types.ObjectId,
 				ref: 'Products'
 			}
-		]
+		],
+		newUser: Boolean
 	},
 	{
 		timestamps: true

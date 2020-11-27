@@ -1,4 +1,3 @@
-const { deserializeUser } = require('passport');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 //Require your User Model here!
@@ -27,7 +26,8 @@ passport.use(
 						firstName: profile.name.givenName,
 						lastName: profile.name.familyName,
 						avatar: profile.photos[0].value,
-						email: profile.emails[0].value
+						email: profile.emails[0].value,
+						newUser: true
 					});
 
 					newUser.save(function (err) {
@@ -46,7 +46,6 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(function (id, done) {
 	// Find your User, using your model, and then call done(err, whateverYourUserIsCalled)
-	console.log(id, 'deserializeUser');
 	User.findById(id, function (err, user) {
 		done(err, user);
 	});

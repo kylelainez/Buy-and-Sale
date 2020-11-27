@@ -3,6 +3,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var indexRouter = require('./routes/index');
+var userRouter = require('./routes/user');
 // session middleware
 var session = require('express-session');
 var passport = require('passport');
@@ -48,6 +49,7 @@ app.use(function (req, res, next) {
 });
 // mount all routes with appropriate base paths
 app.use('/', indexRouter);
+app.use('/', userRouter);
 
 // invalid request, send 404 page
 app.use(function (req, res) {

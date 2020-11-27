@@ -1,5 +1,8 @@
 <header class="flex">
 	<a href="/"><img src="/images/Logo.svg" id="header-logo" /></a>
-	<span class="website-name">BUY AND SALE</span>
+	<% if(user) {%>
+	<a href="/logout">Logout</a>
+	<%} else{ %>
 	<a href="/auth/google">Login With Google</a>
+	<% } %>
 </header>
