@@ -2,20 +2,17 @@ const User = require('../models/user');
 
 module.exports = {
 	newUser,
-	isNewUser
+	isNewUser,
+	getUser
 };
 
 function newUser(req, res, next) {
-	User.findById(req.params.id, async function (err, user) {
+	User.findById(req.params.id, function (err, user) {
 		const keys = Object.keys(req.body);
-		await keys.forEach((key) => {
+		keys.forEach((key) => {
 			user[key] = req.body[key];
-			console.log(user[key], key, keys[key]);
 		});
-		console.log('newUser', user['newUser']);
-		// user.newUser = false;
-		console.log('keys', keys);
-		console.log(user);
+		user.newUser = false;
 		user.save(function (err) {
 			res.redirect('/');
 		});
@@ -30,4 +27,21 @@ function isNewUser(req, res, next) {
 		});
 	}
 	res.redirect('/');
+}
+
+function getUser(req, res, next) {
+	const isCurrentUser = `${req.user._id}` === req.params.id ? true : false;
+	if (isCurrentUser) {
+		res.render('user/showCurrent', {
+			user: req.user,
+			title: req.user.firstName + ' ' + req.user.lastName
+		});
+	} else {
+		User.findById(req.params.id, function (err, user) {
+			res.render('user/show', {
+				user,
+				title: user.firstName + ' ' + user.lastName
+			});
+		});
+	}
 }

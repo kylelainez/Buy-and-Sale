@@ -4,9 +4,11 @@ var passport = require('passport');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-	if (req.user)
+	if (req.user) {
 		if (req.user.newUser)
 			return res.redirect(`/user/new-user/${req.user._id}`);
+	}
+
 	res.render('index', { title: 'Buy and Sale', user: req.user });
 });
 
