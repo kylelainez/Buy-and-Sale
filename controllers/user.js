@@ -1,9 +1,12 @@
 const User = require('../models/user');
+const Product = require('../models/products');
 
 module.exports = {
 	newUser,
 	isNewUser,
-	getUser
+	getUser,
+	newPost,
+	addPost
 };
 
 function newUser(req, res, next) {
@@ -32,16 +35,47 @@ function isNewUser(req, res, next) {
 function getUser(req, res, next) {
 	const isCurrentUser = `${req.user._id}` === req.params.id ? true : false;
 	if (isCurrentUser) {
-		res.render('user/showCurrent', {
-			user: req.user,
-			title: req.user.firstName + ' ' + req.user.lastName
-		});
+		User.findById(req.user._id)
+			.populate('products')
+			.exec(function (err, user) {
+				console.log(user);
+				res.render('user/showCurrent', {
+					user,
+					title: user.firstName + ' ' + user.lastName
+				});
+			});
 	} else {
 		User.findById(req.params.id, function (err, user) {
 			res.render('user/show', {
 				user,
-				title: user.firstName + ' ' + user.lastName
+				title: user.firstName + ' ' + user.lastName,
+				product
 			});
 		});
 	}
+}
+
+function newPost(req, res, next) {
+	res.render('user/newProduct', {
+		user: req.user,
+		title: 'New Product'
+	});
+}
+
+function addPost(req, res, next) {
+	console.log(req.body);
+	console.log(req.files.image);
+
+	User.findById(req.params.id, function (err, user) {
+		const product = new Product(req.body);
+		product.image = req.files.image;
+		product.seller = user._id;
+		product.save(function (err) {
+			console.log(product._id);
+			user.products.push(product._id);
+			user.save(function (err) {
+				res.redirect(`/user/${user._id}`);
+			});
+		});
+	});
 }

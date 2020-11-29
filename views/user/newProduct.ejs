@@ -4,8 +4,22 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title><%= title %></title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 	<body>
 		<%- include('../partials/header') %>
+		<form
+			method="POST"
+			action="/user/<%= user._id %>/new-post"
+			autocomplete="off"
+			enctype="multipart/form-data"
+		>
+			<input type="text" name="name" />
+			<input type="number" name="price" />
+			<input type="number" name="quantity" />
+			<input type="text" name="information" />
+			<input type="file" name="image" />
+			<input type="submit" value="submit" multiple accept="image/*" />
+		</form>
 	</body>
 </html>

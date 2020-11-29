@@ -20,6 +20,14 @@ const productSchema = new Schema(
 		seller: {
 			type: Schema.Types.ObjectId,
 			ref: 'User'
+		},
+		image: {
+			data: Buffer,
+			contentType: String
+		},
+		information: {
+			type: String,
+			default: ''
 		}
 	},
 	{

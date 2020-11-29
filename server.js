@@ -8,7 +8,7 @@ var userRouter = require('./routes/user');
 var session = require('express-session');
 var passport = require('passport');
 var methodOverride = require('method-override');
-
+var upload = require('express-fileupload');
 // load the env vars
 require('dotenv').config();
 
@@ -30,6 +30,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(upload());
 // mount the session middleware
 app.use(
 	session({
