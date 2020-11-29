@@ -8,12 +8,7 @@
 	</head>
 	<body>
 		<%- include('../partials/header') %>
-		<img src="<%= user.avatar %>" />
-		<span class="name"><%= user.firstName %> <%= user.lastName %> </span>
-		<span class="contactNumber"><%= user.contactNumber %> </span>
-		<a href="/user/<%= user._id %>/new-post">Add a product</a>
-		<% user.products.forEach(product => { %>
-		<div class="product">
+		<div>
 			<img
 				src="data:image/String;base64, 
 					<%= product.image.data.toString('base64')%>"
@@ -21,8 +16,7 @@
 			<span><%= product.name %> </span>
 			<span>$<%= product.price %> </span>
 			<span><%= product.quantity %>pc</span>
+			<span><%= product.information %> </span>
 		</div>
-
-		<% }); %>
 	</body>
 </html>

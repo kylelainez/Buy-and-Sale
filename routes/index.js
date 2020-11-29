@@ -1,16 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var product = require('../controllers/product');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
 	if (req.user) {
-		if (req.user.newUser)
+		if (req.user.newUser) {
 			return res.redirect(`/user/new-user/${req.user._id}`);
+		}
+		return res.redirect('/home');
 	}
-
 	res.render('index', { title: 'Buy and Sale', user: req.user });
 });
+
+router.get('/home', isLoggedIn, product.home);
+router.get('/product/:id', isLoggedIn, product.showProduct);
 
 // Google OAuth login route
 router.get(

@@ -48,8 +48,7 @@ function getUser(req, res, next) {
 		User.findById(req.params.id, function (err, user) {
 			res.render('user/show', {
 				user,
-				title: user.firstName + ' ' + user.lastName,
-				product
+				title: user.firstName + ' ' + user.lastName
 			});
 		});
 	}

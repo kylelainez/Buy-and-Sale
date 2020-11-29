@@ -14,12 +14,18 @@
 			autocomplete="off"
 			enctype="multipart/form-data"
 		>
-			<input type="text" name="name" />
-			<input type="number" name="price" />
-			<input type="number" name="quantity" />
-			<input type="text" name="information" />
-			<input type="file" name="image" />
-			<input type="submit" value="submit" multiple accept="image/*" />
+			<input type="text" name="name" required />
+			<input type="number" name="price" required />
+			<input type="number" name="quantity" required />
+			<input type="text" name="information" required />
+			<input
+				type="file"
+				name="image"
+				multiple
+				accept="image/*"
+				required
+			/>
+			<input type="submit" value="submit" />
 		</form>
 	</body>
 </html>
