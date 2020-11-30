@@ -15,10 +15,12 @@ function home(req, res, next) {
 }
 
 function showProduct(req, res, next) {
-	Products.findById(req.params.id).then(function (err, product) {
+	console.log(req.headers.referer);
+	Products.findById(req.params.id, function (err, product) {
 		res.render('shop/product', {
 			title: product.name,
-			product
+			product,
+			user: req.user
 		});
 	});
 }

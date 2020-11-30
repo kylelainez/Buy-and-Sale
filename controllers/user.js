@@ -1,12 +1,18 @@
 const User = require('../models/user');
 const Product = require('../models/products');
+const products = require('../models/products');
 
 module.exports = {
 	newUser,
 	isNewUser,
 	getUser,
 	newPost,
-	addPost
+	addPost,
+	addCart,
+	showCart,
+	removeCart,
+	checkout,
+	showCheckout
 };
 
 function newUser(req, res, next) {
@@ -38,7 +44,6 @@ function getUser(req, res, next) {
 		User.findById(req.user._id)
 			.populate('products')
 			.exec(function (err, user) {
-				console.log(user);
 				res.render('user/showCurrent', {
 					user,
 					title: user.firstName + ' ' + user.lastName
@@ -62,19 +67,69 @@ function newPost(req, res, next) {
 }
 
 function addPost(req, res, next) {
-	console.log(req.body);
-	console.log(req.files.image);
-
 	User.findById(req.params.id, function (err, user) {
 		const product = new Product(req.body);
 		product.image = req.files.image;
 		product.seller = user._id;
 		product.save(function (err) {
-			console.log(product._id);
 			user.products.push(product._id);
 			user.save(function (err) {
 				res.redirect(`/user/${user._id}`);
 			});
+		});
+	});
+}
+
+function addCart(req, res, next) {
+	User.findById(req.params.id, function (err, user) {
+		const idx = user.cart.products.indexOf(req.params.product);
+		console.log(idx, typeof idx, idx >= 0);
+		if (idx === -1) {
+			user.cart.products.push(req.params.product);
+			console.log('here');
+			user.save(function (err) {
+				req.user = user;
+				res.redirect(req.headers.referer);
+			});
+		} else res.redirect(req.headers.referer);
+	});
+}
+
+function showCart(req, res, next) {
+	User.findById(req.params.id, function (err, user) {
+		Product.find()
+			.where('_id')
+			.in(user.cart.products)
+			.exec(function (err, cart) {
+				res.render('user/cart', { title: 'Cart', cart, user });
+			});
+	});
+}
+
+function removeCart(req, res, next) {
+	User.findById(req.params.id, function (err, user) {
+		const index = user.cart.products.indexOf(req.params.products);
+		user.cart.products.splice(index, 1);
+
+		user.save(function (err) {
+			res.redirect(req.headers.referer);
+		});
+	});
+}
+
+function checkout(req, res, next) {
+	const quantity = [...req.body.quantity];
+	User.findById(req.params.id, function (err, user) {
+		user.cart.products.forEach((product, idx) => {
+			Product.findById(product, function (err, prod) {
+				prod.quantity -= quantity[idx];
+
+				prod.save(function (err) {});
+			});
+		});
+		user.cart.products = [];
+		user.save(function (err) {
+			return res.redirect('/');
 		});
 	});
 }

@@ -27,7 +27,10 @@ passport.use(
 						lastName: profile.name.familyName,
 						avatar: profile.photos[0].value,
 						email: profile.emails[0].value,
-						newUser: true
+						newUser: true,
+						cart: {
+							products: []
+						}
 					});
 
 					newUser.save(function (err) {

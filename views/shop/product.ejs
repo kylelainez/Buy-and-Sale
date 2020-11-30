@@ -17,6 +17,14 @@
 			<span>$<%= product.price %> </span>
 			<span><%= product.quantity %>pc</span>
 			<span><%= product.information %> </span>
+			<% if(`${user._id}` !== `${product.seller}`) {%>
+			<form
+				method="POST"
+				action="/user/<%= user._id %>/add/<%= product._id %>"
+			>
+				<input type="submit" value="Add To Cart" />
+			</form>
+			<% }; %>
 		</div>
 	</body>
 </html>

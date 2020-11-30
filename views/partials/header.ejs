@@ -1,6 +1,7 @@
 <header class="flex">
 	<a href="/"><img src="/images/Logo.svg" id="header-logo" /></a>
 	<% if(user) {%>
+	<a href="/user/<%= user._id %>/cart">Cart</a>
 	<a href="/logout">Logout</a>
 	<%} else{ %>
 	<a href="/auth/google">Login With Google</a>

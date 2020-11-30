@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= title %></title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+		<script defer src="/javascripts/cart.js"></script>
+	</head>
+	<body>
+		<%- include('../partials/header') %>
+		<br />
+		<% cart.forEach((product, idx) => { %>
+		<div class="product">
+			<img
+				src="data:image/String;base64, 
+					<%= product.image.data.toString('base64')%>"
+			/>
+			<span><%= product.name %> </span>
+			<span class="prices"><%= product.price %> </span>
+			<input
+				type="number"
+				class="quantity"
+				value="1"
+				max="<%= product.quantity %>"
+				min="0"
+				name="quantity[<%= idx %>]"
+				form="checkout"
+			/>
+			<form
+				method="POST"
+				action="/user/<%= user._id %>/cart/<%= product._id %>?_method=PUT"
+			>
+				<input type="submit" value="Remove" />
+			</form>
+		</div>
+		<% }); %>
+		<form
+			method="POST"
+			action="/user/<%= user._id %>/cart/checkout"
+			id="checkout"
+		>
+			<input type="number" name="price" id="price" value="0" />
+			<input type="submit" value="Checkout" />
+		</form>
+	</body>
+</html>
