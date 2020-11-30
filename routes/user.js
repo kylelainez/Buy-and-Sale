@@ -6,7 +6,6 @@ router.get('/:id', isLoggedIn, user.getUser);
 router.get('/new-user/:id', isLoggedIn, user.isNewUser);
 router.get('/:id/new-post', isLoggedIn, user.newPost);
 router.get('/:id/cart', isLoggedIn, user.showCart);
-router.get('/:id/cart/checkout', isLoggedIn, user.showCheckout);
 
 router.put('/new-user/:id', isLoggedIn, user.newUser);
 router.put('/:id/cart/:product', isLoggedIn, user.removeCart);

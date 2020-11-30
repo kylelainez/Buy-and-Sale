@@ -11,8 +11,7 @@ module.exports = {
 	addCart,
 	showCart,
 	removeCart,
-	checkout,
-	showCheckout
+	checkout
 };
 
 function newUser(req, res, next) {
