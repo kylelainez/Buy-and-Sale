@@ -8,19 +8,31 @@
 	</head>
 	<body class="flex-col max-width justify">
 		<%- include('../partials/header') %>
-		<img src="<%= user.avatar %>" />
-		<span class="name"><%= user.firstName %> <%= user.lastName %> </span>
-		<span class="contactNumber"><%= user.contactNumber %> </span>
-		<% user.products.forEach(product => { %>
-		<div class="product">
-			<img
-				src="data:image/String;base64, 
-						<%= product.image.data.toString('base64')%>"
-			/>
-			<span><%= product.name %> </span>
-			<span>$<%= product.price %> </span>
-			<span><%= product.quantity %>pc</span>
+		<div class="flex">
+			<img src="<%= user.avatar %>" id="avatar" />
+			<div class="flex-col user-info">
+				<span class="name"
+					><%= user.firstName %> <%= user.lastName %>
+				</span>
+				<span class="contactNumber"><%= user.contactNumber %> </span>
+			</div>
 		</div>
-		<% }); %>
+		<div class="flex">
+			<% user.products.forEach(product => { %>
+			<a href="/product/<%= product._id %>">
+				<div class="product flex-col">
+					<img
+						src="data:image/String;base64, 
+									<%= product.image.data.toString('base64')%>"
+					/>
+					<div class="content flex-col">
+						<span><%= product.name %> </span>
+						<span>$<%= product.price %> </span>
+						<span><%= product.quantity %> pcs left</span>
+					</div>
+				</div>
+			</a>
+			<% }); %>
+		</div>
 	</body>
 </html>

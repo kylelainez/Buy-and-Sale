@@ -14,7 +14,8 @@ module.exports = {
 	removeCart,
 	checkout,
 	editProduct,
-	edit
+	edit,
+	delete: deleteProduct
 };
 
 function newUser(req, res, next) {
@@ -41,7 +42,8 @@ function isNewUser(req, res, next) {
 }
 
 function getUser(req, res, next) {
-	const isCurrentUser = `${req.user._id}` === req.params.id ? true : false;
+	const isCurrentUser =
+		`${req.user._id}` === `${req.params.id}` ? true : false;
 	if (isCurrentUser) {
 		User.findById(req.user._id)
 			.populate('products')
@@ -159,6 +161,22 @@ function edit(req, res, next) {
 		product.image = req.files.image;
 		product.save(function (err) {
 			res.redirect('/');
+		});
+	});
+}
+
+function deleteProduct(req, res, next) {
+	User.findById(req.params.id, function (err, user) {
+		const idx = user.products.indexOf(req.params.product);
+		user.products.splice(idx, 1);
+
+		user.save(function (err) {
+			Product.findOneAndDelete(
+				{ _id: req.params.product },
+				function (err) {
+					res.redirect(`/user/${req.params.id}`);
+				}
+			);
 		});
 	});
 }

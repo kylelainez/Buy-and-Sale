@@ -15,6 +15,8 @@ router.post('/:id/new-post', isLoggedIn, user.addPost);
 router.post('/:id/add/:product', isLoggedIn, user.addCart);
 router.post('/:id/cart/checkout', isLoggedIn, user.checkout);
 
+router.delete('/:id/product/:product', isLoggedIn, user.delete);
+
 //Check if Logged In
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) return next();
