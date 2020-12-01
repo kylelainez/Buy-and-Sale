@@ -22,6 +22,8 @@ Buy and Sale is a Buy and sell online website
 -   Express
 -   Node.js
 -   Paspport.js
+-   MongoDB
+-   Mongoose
 
 ## Future Enchancements
 
