@@ -6,20 +6,23 @@
 		<title><%= title %></title>
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
-	<body>
+	<body class="flex max-width justify">
 		<%- include('../partials/header') %>
 		<br />
 		<% products.forEach(product => {%>
-		<div class="product">
-			<img
-				src="data:image/String;base64, 
+		<a href="/product/<%= product._id %>">
+			<div class="product flex-col">
+				<img
+					src="data:image/String;base64, 
                         <%= product.image.data.toString('base64')%>"
-			/>
-			<span><%= product.name %> </span>
-			<span>$<%= product.price %> </span>
-			<span><%= product.quantity %>pc</span>
-			<a href="/product/<%= product._id %>">Check Product</a>
-		</div>
+				/>
+				<div class="content flex-col">
+					<span><%= product.name %> </span>
+					<span>$<%= product.price %> </span>
+					<span><%= product.quantity %>pc</span>
+				</div>
+			</div>
+		</a>
 		<% }) %>
 	</body>
 </html>

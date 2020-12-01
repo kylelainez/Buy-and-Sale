@@ -39,22 +39,27 @@ function isNewUser(req, res, next) {
 
 function getUser(req, res, next) {
 	const isCurrentUser = `${req.user._id}` === req.params.id ? true : false;
+	console.log(isCurrentUser);
 	if (isCurrentUser) {
 		User.findById(req.user._id)
 			.populate('products')
 			.exec(function (err, user) {
-				res.render('user/showCurrent', {
+				return res.render('user/showCurrent', {
 					user,
 					title: user.firstName + ' ' + user.lastName
 				});
 			});
 	} else {
-		User.findById(req.params.id, function (err, user) {
-			res.render('user/show', {
-				user,
-				title: user.firstName + ' ' + user.lastName
+		User.findById(req.params.id)
+			.populate('products')
+			.exec(function (err, user) {
+				if (user === null || user === undefined) return next(err);
+				console.log(user);
+				return res.render('user/show', {
+					user,
+					title: user.firstName + ' ' + user.lastName
+				});
 			});
-		});
 	}
 }
 

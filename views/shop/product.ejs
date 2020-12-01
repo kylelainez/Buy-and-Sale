@@ -6,25 +6,37 @@
 		<title><%= title %></title>
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
-	<body>
+	<body class="flex max-width">
 		<%- include('../partials/header') %>
-		<div>
+		<div class="product-page flex">
 			<img
 				src="data:image/String;base64, 
 					<%= product.image.data.toString('base64')%>"
 			/>
-			<span><%= product.name %> </span>
-			<span>$<%= product.price %> </span>
-			<span><%= product.quantity %>pc</span>
-			<span><%= product.information %> </span>
-			<% if(`${user._id}` !== `${product.seller}`) {%>
-			<form
-				method="POST"
-				action="/user/<%= user._id %>/add/<%= product._id %>"
-			>
-				<input type="submit" value="Add To Cart" />
-			</form>
-			<% }; %>
+			<div class="info flex-col">
+				<span class="product-name"><%= product.name %> </span>
+				<span class="product-price">Price: $<%= product.price %> </span>
+				<span class="product-quantity"
+					>Stock: <%= product.quantity %> pc(s) left
+				</span>
+				<span class="seller"
+					>Seller: <%= product.seller.firstName %> <%=
+					product.seller.lastName %>
+				</span>
+				<span class="product-information">
+					<span>Product Information:</span>
+					<br />
+					<%= product.information %>
+				</span>
+				<% if(`${user._id}` !== `${product.seller}`) {%>
+				<form
+					method="POST"
+					action="/user/<%= user._id %>/add/<%= product._id %>"
+				>
+					<input type="submit" value="Add To Cart" />
+				</form>
+				<% }; %>
+			</div>
 		</div>
 	</body>
 </html>

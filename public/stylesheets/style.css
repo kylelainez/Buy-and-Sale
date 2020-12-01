@@ -1,6 +1,14 @@
+:root {
+	overflow-x: hidden;
+	--max-width: 1200px;
+	font-size: 16px;
+}
+
 body {
 	padding: 50px;
 	font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+	margin: 0 auto;
+	background-color: #f0f0f0;
 }
 
 a {
@@ -10,21 +18,117 @@ a {
 
 header {
 	height: 5vh;
-	position: absolute;
+	position: fixed;
 	background-color: #00b7ff;
 	padding: 0 20px;
 	margin: 0;
 	top: 0;
 	left: 0;
 	right: 0;
+	justify-content: center;
+}
+header div {
 	justify-content: space-between;
 }
 
 .flex {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
+}
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
+.justify {
+	justify-content: center;
 }
 
 #header-logo {
 	height: 5vh;
+}
+
+.product {
+	width: 200px;
+	height: 250px;
+	border: 2px solid black;
+	margin: 10px;
+	align-items: center;
+	position: relative;
+	padding: 5px;
+}
+
+.product img {
+	max-width: 200px;
+	max-height: 200px;
+	width: auto;
+	height: auto;
+}
+
+.product .content {
+	padding: 0;
+	margin: 0;
+	height: 50px;
+	bottom: 0;
+	left: 5px;
+	right: 0;
+	position: absolute;
+}
+
+.max-width {
+	max-width: var(--max-width);
+	width: 100%;
+}
+
+.product-page {
+	overflow: hidden;
+	background-color: white;
+	height: calc(85vh);
+	width: 100%;
+	align-items: flex-start;
+	align-self: center;
+}
+
+.product-page img {
+	max-width: 400px;
+	max-height: 400px;
+	width: auto;
+	height: auto;
+	padding: 30px;
+}
+
+.info {
+	padding: 30px 0;
+}
+
+.product-name {
+	font-size: 3rem;
+	font-weight: 600;
+}
+
+.product-price {
+	font-size: 2rem;
+	color: #00b7ff;
+}
+.product-quantity {
+	font-size: 1.2rem;
+}
+.seller {
+	padding-bottom: 30px;
+}
+.product-information {
+	font-size: 1.5rem;
+}
+
+input[type='submit'] {
+	font-size: 1.5rem;
+	background-color: #00b7ff;
+	color: white;
+	outline: none;
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	margin-top: 20px;
+	cursor: pointer;
 }

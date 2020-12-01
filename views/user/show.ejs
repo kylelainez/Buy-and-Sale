@@ -15,13 +15,12 @@
 		<div class="product">
 			<img
 				src="data:image/String;base64, 
-					<%= product.image.data.toString('base64')%>"
+						<%= product.image.data.toString('base64')%>"
 			/>
 			<span><%= product.name %> </span>
 			<span>$<%= product.price %> </span>
 			<span><%= product.quantity %>pc</span>
 		</div>
-
 		<% }); %>
 	</body>
 </html>

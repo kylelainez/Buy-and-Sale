@@ -16,11 +16,13 @@ function home(req, res, next) {
 
 function showProduct(req, res, next) {
 	console.log(req.headers.referer);
-	Products.findById(req.params.id, function (err, product) {
-		res.render('shop/product', {
-			title: product.name,
-			product,
-			user: req.user
+	Products.findById(req.params.id)
+		.populate('seller')
+		.exec(function (err, product) {
+			res.render('shop/product', {
+				title: product.name,
+				product,
+				user: req.user
+			});
 		});
-	});
 }
