@@ -6,7 +6,7 @@
 		<title><%= title %></title>
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
-	<body>
+	<body class="flex-col max-width justify">
 		<%- include('../partials/header') %>
 		<img src="<%= user.avatar %>" />
 		<span class="name"><%= user.firstName %> <%= user.lastName %> </span>

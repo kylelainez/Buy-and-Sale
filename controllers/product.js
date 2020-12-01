@@ -9,7 +9,8 @@ function home(req, res, next) {
 	Products.find({}, function (err, products) {
 		res.render('shop/homepage', {
 			title: 'Buy and Sale',
-			products
+			products,
+			user: req.user
 		});
 	});
 }

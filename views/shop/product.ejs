@@ -20,20 +20,28 @@
 					>Stock: <%= product.quantity %> pc(s) left
 				</span>
 				<span class="seller"
-					>Seller: <%= product.seller.firstName %> <%=
-					product.seller.lastName %>
+					>Seller:
+					<a href="/user/<%= product.seller._id %> ">
+						<%= product.seller.firstName %> <%=
+						product.seller.lastName %>
+					</a>
 				</span>
 				<span class="product-information">
 					<span>Product Information:</span>
 					<br />
 					<%= product.information %>
 				</span>
-				<% if(`${user._id}` !== `${product.seller}`) {%>
+				<% if(`${user._id}` !== `${product.seller._id}`) {%> <%=
+				console.log(user._id, product.seller._id) %>
 				<form
 					method="POST"
 					action="/user/<%= user._id %>/add/<%= product._id %>"
 				>
+					<% if(product.quantity > 0) {%>
 					<input type="submit" value="Add To Cart" />
+					<% } else { %>
+					<input type="submit" value="Sold Out" disabled />
+					<% } %>
 				</form>
 				<% }; %>
 			</div>

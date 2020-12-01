@@ -6,9 +6,11 @@ router.get('/:id', isLoggedIn, user.getUser);
 router.get('/new-user/:id', isLoggedIn, user.isNewUser);
 router.get('/:id/new-post', isLoggedIn, user.newPost);
 router.get('/:id/cart', isLoggedIn, user.showCart);
+router.get('/:id/product/:product/edit', isLoggedIn, user.editProduct);
 
 router.put('/new-user/:id', isLoggedIn, user.newUser);
 router.put('/:id/cart/:product', isLoggedIn, user.removeCart);
+router.put('/:id/product/:product/edit', isLoggedIn, user.edit);
 router.post('/:id/new-post', isLoggedIn, user.addPost);
 router.post('/:id/add/:product', isLoggedIn, user.addCart);
 router.post('/:id/cart/checkout', isLoggedIn, user.checkout);

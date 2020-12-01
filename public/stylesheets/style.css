@@ -15,7 +15,9 @@ a {
 	color: black;
 	text-decoration: none;
 }
-
+span a {
+	color: #00b7ff;
+}
 header {
 	height: 5vh;
 	position: fixed;
@@ -26,6 +28,7 @@ header {
 	left: 0;
 	right: 0;
 	justify-content: center;
+	z-index: 1;
 }
 header div {
 	justify-content: space-between;
@@ -51,12 +54,12 @@ header div {
 
 .product {
 	width: 200px;
-	height: 250px;
+	height: 280px;
 	border: 2px solid black;
 	margin: 10px;
 	align-items: center;
 	position: relative;
-	padding: 5px;
+	padding: 10px;
 }
 
 .product img {
@@ -67,13 +70,22 @@ header div {
 }
 
 .product .content {
-	padding: 0;
+	padding: 10px;
 	margin: 0;
-	height: 50px;
+	height: auto;
 	bottom: 0;
 	left: 5px;
 	right: 0;
 	position: absolute;
+}
+.content span {
+	font-size: 1.1rem;
+}
+.content span:first-child {
+	font-weight: 700;
+}
+.content span:nth-child(2) {
+	color: #0060ff;
 }
 
 .max-width {
@@ -153,4 +165,126 @@ b {
 
 .checkout {
 	padding: 20px 0 0 0;
+}
+
+.product-user {
+	max-height: 200px;
+	height: auto;
+	border: 2px solid black;
+	margin: 10px 0;
+	padding: 10px;
+	justify-content: space-between;
+	font-size: 1.3rem;
+}
+.product-user img {
+	max-width: 200px;
+	max-height: 200px;
+	width: auto;
+	height: auto;
+}
+
+.form-info {
+	margin: 40px 0;
+	max-width: 400px;
+	width: auto;
+	font-size: 1.2rem;
+	background-color: white;
+	padding: 15px;
+}
+
+.form-info input {
+	font-size: inherit;
+	border: 2px solid gray;
+	margin: 10px 0;
+	padding: 5px;
+	outline: border(2px, solid, #00b7ff);
+}
+
+.form-info input[type='file'],
+.form-info input[type='submit'] {
+	border: none;
+}
+
+h1 {
+	align-self: center;
+}
+label[for='image'] {
+	padding: 0 5px;
+}
+
+#avatar {
+	max-width: 200px;
+	max-height: 200px;
+	width: auto;
+	height: auto;
+}
+.user-info {
+	padding: 0 10px;
+}
+.name {
+	font-size: 1.5rem;
+}
+
+.contactNumber {
+	font-size: 1rem;
+}
+#add {
+	margin: 0 20px;
+	font-size: 1.5rem;
+	background-color: #00b7ff;
+	color: white;
+	outline: none;
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	justify-self: right;
+	position: relative;
+}
+
+/* Dropdown Button */
+.dropbtn {
+	background-color: transparent;
+	font-size: 16px;
+	border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+	display: block;
+	margin-left: -140px;
+}
+
+#landing {
+	width: 50vw;
+	justify-self: center;
 }

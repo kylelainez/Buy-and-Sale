@@ -9,7 +9,8 @@
 	<body class="flex max-width justify">
 		<%- include('../partials/header') %>
 		<br />
-		<% products.forEach(product => {%>
+		<% products.forEach(product => {%> <% if(product.quantity > 0){ %>
+		<%if(`${user._id}` !== `${product.seller._id}`){ %>
 		<a href="/product/<%= product._id %>">
 			<div class="product flex-col">
 				<img
@@ -19,10 +20,10 @@
 				<div class="content flex-col">
 					<span><%= product.name %> </span>
 					<span>$<%= product.price %> </span>
-					<span><%= product.quantity %>pc</span>
+					<span><%= product.quantity %> pcs left</span>
 				</div>
 			</div>
 		</a>
-		<% }) %>
+		<% } %> <% } %> <% }) %>
 	</body>
 </html>

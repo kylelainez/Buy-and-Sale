@@ -6,14 +6,20 @@
 		<title><%= title %></title>
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
-	<body>
+	<body class="flex-col max-width justify">
 		<%- include('../partials/header') %>
-		<img src="<%= user.avatar %>" />
-		<span class="name"><%= user.firstName %> <%= user.lastName %> </span>
-		<span class="contactNumber"><%= user.contactNumber %> </span>
-		<a href="/user/<%= user._id %>/new-post">Add a product</a>
+		<div class="flex">
+			<img src="<%= user.avatar %>" id="avatar" />
+			<div class="flex-col user-info">
+				<span class="name"
+					><%= user.firstName %> <%= user.lastName %>
+				</span>
+				<span class="contactNumber"><%= user.contactNumber %> </span>
+			</div>
+			<a href="/user/<%= user._id %>/new-post" id="add">Add a product</a>
+		</div>
 		<% user.products.forEach(product => { %>
-		<div class="product">
+		<div class="product-user flex">
 			<img
 				src="data:image/String;base64, 
 					<%= product.image.data.toString('base64')%>"
@@ -21,6 +27,21 @@
 			<span><%= product.name %> </span>
 			<span>$<%= product.price %> </span>
 			<span><%= product.quantity %>pc</span>
+			<div class="flex-col">
+				<form
+					method="GET"
+					action="/user/<%= user._id %>/product/<%= product._id %>/edit"
+				>
+					<input type="submit" value="Edit" />
+				</form>
+				<form
+					method="POST"
+					action="/user/<%= user._id %>/product/<%=
+				product._id %>?_method=DELETE"
+				>
+					<input type="submit" value="Delete" />
+				</form>
+			</div>
 		</div>
 
 		<% }); %>

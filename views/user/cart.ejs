@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 		<script defer src="/javascripts/cart.js"></script>
 	</head>
-	<body>
+	<body class="flex-col max-width justify">
 		<%- include('../partials/header') %>
 		<br />
 		<% cart.forEach((product, idx) => { %>
@@ -42,7 +42,9 @@
 				<input type="submit" value="Remove" />
 			</form>
 		</div>
-		<% }); %>
+		<% }); %> <% if(cart.length === 0) {%>
+		<h2>Cart Empty</h2>
+		<% } %>
 		<div class="flex checkout">
 			<span><b>Total Price:</b> </span>
 			<span id="price"></span>

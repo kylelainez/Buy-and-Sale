@@ -10,26 +10,40 @@
 		<%- include('../partials/header') %>
 		<form
 			method="POST"
-			action="/user/<%= user._id %>/new-post"
-			autocomplete="off"
+			action="/user/<%= product.seller._id %>/product/<%= product._id %>/edit?_method=PUT"
 			enctype="multipart/form-data"
 			class="form-info flex-col"
 		>
-			<h1>New Product</h1>
-			<input type="text" name="name" required placeholder="Name" />
-			<input type="number" name="price" required placeholder="Price" />
+			<h1>Edit Product</h1>
+			<input
+				type="text"
+				name="name"
+				required
+				value="<%= product.name %>"
+				placeholder="name"
+			/>
+			<input
+				type="number"
+				name="price"
+				required
+				value="<%= product.price %>"
+				placeholder="price"
+			/>
 			<input
 				type="number"
 				name="quantity"
 				required
-				placeholder="Quantity"
+				value="<%= product.quantity %>"
+				placeholder="quantity"
 			/>
 			<input
 				type="text"
 				name="information"
 				required
-				placeholder="Information"
+				value="<%= product.information %>"
+				placeholder="information"
 			/>
+			<label for="image"> Select Image:</label>
 			<input
 				type="file"
 				name="image"
