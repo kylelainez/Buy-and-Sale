@@ -84,7 +84,7 @@ header div {
 .product-page {
 	overflow: hidden;
 	background-color: white;
-	height: calc(85vh);
+	height: auto;
 	width: 100%;
 	align-items: flex-start;
 	align-self: center;
@@ -131,4 +131,26 @@ input[type='submit'] {
 	border-radius: 5px;
 	margin-top: 20px;
 	cursor: pointer;
+}
+.cart {
+	border: 2px solid black;
+	justify-content: space-between;
+	margin: 5px 0;
+	padding: 15px;
+}
+.cart img {
+	max-width: 200px;
+	max-height: 200px;
+	width: auto;
+	height: auto;
+}
+b {
+	font-size: 1.1rem;
+}
+#price {
+	font-size: 1.5rem;
+}
+
+.checkout {
+	padding: 20px 0 0 0;
 }

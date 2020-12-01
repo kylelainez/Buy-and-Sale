@@ -10,8 +10,7 @@ function updateTotal() {
 	for (let i = 0; i < prices.length; i++) {
 		total += prices[i].innerText * quantities[i].value;
 	}
-	console.log(total);
-	totalPrice.value = total;
+	totalPrice.innerText = `$${total}`;
 }
 updateTotal();
 quantities.forEach((el) => {

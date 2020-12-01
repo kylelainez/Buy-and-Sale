@@ -11,22 +11,30 @@
 		<%- include('../partials/header') %>
 		<br />
 		<% cart.forEach((product, idx) => { %>
-		<div class="product">
+		<div class="cart flex">
 			<img
 				src="data:image/String;base64, 
 					<%= product.image.data.toString('base64')%>"
 			/>
-			<span><%= product.name %> </span>
-			<span class="prices"><%= product.price %> </span>
-			<input
-				type="number"
-				class="quantity"
-				value="1"
-				max="<%= product.quantity %>"
-				min="0"
-				name="quantity[<%= idx %>]"
-				form="checkout"
-			/>
+			<span><b>Name: </b><%= product.name %> </span>
+			<div>
+				<b>Price: </b>
+				<span class="prices"><%= product.price %> </span>
+			</div>
+
+			<span>
+				<b>Quantity:</b>
+				<input
+					type="number"
+					class="quantity"
+					value="1"
+					max="<%= product.quantity %>"
+					min="0"
+					name="quantity[<%= idx %>]"
+					form="checkout"
+				/>
+			</span>
+
 			<form
 				method="POST"
 				action="/user/<%= user._id %>/cart/<%= product._id %>?_method=PUT"
@@ -35,12 +43,16 @@
 			</form>
 		</div>
 		<% }); %>
+		<div class="flex checkout">
+			<span><b>Total Price:</b> </span>
+			<span id="price"></span>
+		</div>
+
 		<form
 			method="POST"
 			action="/user/<%= user._id %>/cart/checkout"
 			id="checkout"
 		>
-			<input type="number" name="price" id="price" value="0" />
 			<input type="submit" value="Checkout" />
 		</form>
 	</body>
